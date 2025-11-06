@@ -1,0 +1,2 @@
+# personality-stress
+Zusammenhänge zwischen Persönlichkeitsmerkmalen und subjektivem Stresserleben bei Studierenden im Grundstudium
