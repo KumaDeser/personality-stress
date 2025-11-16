@@ -1,0 +1,27 @@
+# === Java / Maven ===
+target/
+*.class
+
+# === IntelliJ IDEA ===
+.idea/
+*.iml
+*.iws
+out/
+
+# === macOS ===
+.DS_Store
+
+# === Logs ===
+*.log
+
+# === HTTP Client ===
+*.http
+
+# === Environment/Secrets ===
+*.env
+
+# === Optional: VSCode Support ===
+.vscode/
+
+# === System Files ===
+Thumbs.db
