@@ -23,7 +23,7 @@ public class BfiScoringService {
         Double consc = (rev(r.q3) + r.q8) / 2.0;
 
         // Neurotizismus: q4 (reverse), q9 (+)
-        Double neuro = (rev(r.q4) + r.q9) /2.0;
+        Double neuro = (rev(r.q4) + r.q9) / 2.0;
 
         // Offenheit: q5 (+), q10 (reverse)
         Double open = (r.q5 + rev(r.q10)) / 2.0;

@@ -1,16 +1,95 @@
+### Normaler Test – alle Werte = mittlerer Bereich
 POST http://localhost:8080/api/bfi10
 Content-Type: application/json
 
 {
-  "sessionId": "test123",
-  "q1": 5,
+  "sessionID": "bfi-normal",
+  "q1": 3,
   "q2": 3,
-  "q3": 2,
-  "q4": 4,
+  "q3": 3,
+  "q4": 3,
+  "q5": 3,
+  "q6": 3,
+  "q7": 3,
+  "q8": 3,
+  "q9": 3,
+  "q10": 3
+}
+
+
+
+### Extrem-Test – Kommentare entfernt
+POST http://localhost:8080/api/bfi10
+Content-Type: application/json
+
+{
+  "sessionID": "bfi-extreme",
+  "q1": 5,
+  "q2": 1,
+  "q3": 1,
+  "q4": 1,
   "q5": 5,
   "q6": 1,
-  "q7": 4,
+  "q7": 5,
   "q8": 5,
-  "q9": 2,
+  "q9": 5,
   "q10": 1
+}
+
+
+### Fehler-Test – ungültiger Wert (z. B. q1 = 7)
+POST http://localhost:8080/api/bfi10
+Content-Type: application/json
+
+{
+  "sessionID": "bfi-invalid-value",
+  "q1": 7,
+  "q2": 3,
+  "q3": 3,
+  "q4": 3,
+  "q5": 3,
+  "q6": 3,
+  "q7": 3,
+  "q8": 3,
+  "q9": 3,
+  "q10": 3
+}
+
+
+
+### Fehler-Test – fehlender Wert (z. B. q10 fehlt)
+POST http://localhost:8080/api/bfi10
+Content-Type: application/json
+
+{
+  "sessionID": "bfi-missing-value",
+  "q1": 3,
+  "q2": 3,
+  "q3": 3,
+  "q4": 3,
+  "q5": 3,
+  "q6": 3,
+  "q7": 3,
+  "q8": 3,
+  "q9": 3
+  // q10 fehlt → sollte Validierungsfehler werfen
+}
+
+
+
+### Fehler-Test – sessionID fehlt (NotBlank verletzt)
+POST http://localhost:8080/api/bfi10
+Content-Type: application/json
+
+{
+  "q1": 3,
+  "q2": 3,
+  "q3": 3,
+  "q4": 3,
+  "q5": 3,
+  "q6": 3,
+  "q7": 3,
+  "q8": 3,
+  "q9": 3,
+  "q10": 3
 }

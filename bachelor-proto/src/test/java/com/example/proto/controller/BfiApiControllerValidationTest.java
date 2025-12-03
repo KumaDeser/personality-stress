@@ -34,8 +34,16 @@ class BfiApiControllerValidationTest {
     void whenMissingRequiredField_thenReturns400() throws Exception {
         Bfi10Request request = new Bfi10Request();
         request.sessionID = "";
-        request.q1 = 3; request.q2 = 4; request.q3 = 3; request.q4 = 2; request.q5 = 4;
-        request.q6 = 5; request.q7 = 2; request.q8 = 3; request.q9 = 4; request.q10 = 1;
+        request.q1 = 3;
+        request.q2 = 4;
+        request.q3 = 3;
+        request.q4 = 2;
+        request.q5 = 4;
+        request.q6 = 5;
+        request.q7 = 2;
+        request.q8 = 3;
+        request.q9 = 4;
+        request.q10 = 1;
 
         mockMvc.perform(post("/api/bfi10")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -47,8 +55,16 @@ class BfiApiControllerValidationTest {
     void whenValidInput_thenReturns200() throws Exception {
         Bfi10Request request = new Bfi10Request();
         request.sessionID = "test123";
-        request.q1 = 3; request.q2 = 4; request.q3 = 3; request.q4 = 2; request.q5 = 4;
-        request.q6 = 5; request.q7 = 2; request.q8 = 3; request.q9 = 4; request.q10 = 1;
+        request.q1 = 3;
+        request.q2 = 4;
+        request.q3 = 3;
+        request.q4 = 2;
+        request.q5 = 4;
+        request.q6 = 5;
+        request.q7 = 2;
+        request.q8 = 3;
+        request.q9 = 4;
+        request.q10 = 1;
 
         when(scoringService.score(any(Bfi10Request.class)))
                 .thenReturn(new BfiScores(3.0, 3.0, 3.0, 3.0, 3.0));
