@@ -1,0 +1,2 @@
+### Scientific CSV Export (mit Metadaten, Semikolon, Timestamp-Dateiname)
+GET http://localhost:8080/api/export

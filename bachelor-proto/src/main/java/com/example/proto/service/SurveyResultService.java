@@ -4,6 +4,8 @@ import com.example.proto.model.SurveyResult;
 import com.example.proto.repository.SurveyResultRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SurveyResultService {
 
@@ -15,5 +17,9 @@ public class SurveyResultService {
 
     public SurveyResult save(SurveyResult result) {
         return repo.save(result);
+    }
+
+    public List<SurveyResult> findAll() {
+        return repo.findAll();
     }
 }
