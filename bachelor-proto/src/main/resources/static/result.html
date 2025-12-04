@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Dein Ergebnis – Persönlichkeit & Stress</title>
+
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 40px auto;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+        h1 { margin-bottom: .2em; }
+        .section { margin-top: 30px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .score { font-size:1.1em; font-weight:bold; }
+        .note  { font-size:.9em; color:#666; }
+        canvas { margin-top:25px; }
+        .button {
+            margin-top:40px;
+            display:inline-block;
+            background:black; color:white;
+            padding:10px 18px;
+            border-radius:6px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Ergebnisübersicht</h1>
+<p>Dies sind deine ausgewerteten Ergebnisse aus BFI-10 & PSS-10.</p>
+
+<!-- Tabellen-Ausgabe -->
+<div id="content"></div>
+
+<!-- Diagramme -->
+<div id="charts" class="section">
+    <h2>Visuelle Darstellung deiner Ergebnisse</h2>
+
+    <h3>Big Five Persönlichkeitsprofil</h3>
+    <canvas id="chartBigFive"></canvas>
+
+    <h3 style="margin-top:30px;">Stressprofil (PSS-10)</h3>
+    <canvas id="chartStress"></canvas>
+</div>
+
+<!-- Wissenschaftliche Interpretation -->
+<div id="interpretation" class="section"></div>
+
+<a href="index.html" class="button">Zurück zur Startseite</a>
+
+<!-- Libraries + App -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+
+<script>
+    /* ==== Ergebnisse laden ==== */
+    const result = App.loadResult();
+
+    /* ==== Tabellen-Box ==== */
+    if(!result){
+        document.getElementById("content").innerHTML =
+            "<p><b>Keine Daten gefunden.</b><br>Bitte zuerst Fragebögen ausfüllen.</p>";
+    } else {
+
+        document.getElementById("content").innerHTML = `
+    <div class="section">
+        <h2>Big Five Persönlichkeitsdimensionen</h2>
+        <table>
+            <tr><th>Skala</th><th>Wert (1–5)</th></tr>
+            <tr><td>Extraversion</td><td class="score">${result.bfi.extraversion.toFixed(2)}</td></tr>
+            <tr><td>Verträglichkeit</td><td class="score">${result.bfi.agreeableness.toFixed(2)}</td></tr>
+            <tr><td>Gewissenhaftigkeit</td><td class="score">${result.bfi.conscientiousness.toFixed(2)}</td></tr>
+            <tr><td>Neurotizismus</td><td class="score">${result.bfi.neuroticism.toFixed(2)}</td></tr>
+            <tr><td>Offenheit</td><td class="score">${result.bfi.openness.toFixed(2)}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Stresswahrnehmung (PSS-10)</h2>
+        <table>
+            <tr><th>Bereich</th><th>Punkte</th></tr>
+            <tr><td>Gesamtstress</td><td class="score">${result.pss.total}</td></tr>
+            <tr><td>Hilflosigkeit</td><td>${result.pss.helplessness}</td></tr>
+            <tr><td>Selbstwirksamkeit (invertiert)</td><td>${result.pss.selfEfficacyReversed}</td></tr>
+        </table>
+        <p class="note">Höhere Werte deuten auf höher empfundenen Stress hin.</p>
+    </div>
+    `;
+    }
+
+    /* ==== Charts ==== */
+    if(result){
+
+        // Radar Big Five
+        new Chart(document.getElementById("chartBigFive"), {
+            type:"radar",
+            data:{
+                labels:["Extraversion","Verträglichkeit","Gewissenhaftigkeit","Neurotizismus","Offenheit"],
+                datasets:[{
+                    label:"Ausprägung (1–5)",
+                    data:[
+                        result.bfi.extraversion,
+                        result.bfi.agreeableness,
+                        result.bfi.conscientiousness,
+                        result.bfi.neuroticism,
+                        result.bfi.openness
+                    ],
+                    fill:true, borderWidth:2,
+                    borderColor:"rgba(0,0,0,0.8)",
+                    backgroundColor:"rgba(0,0,0,0.18)"
+                }]
+            },
+            options:{ scales:{r:{min:1,max:5}} }
+        });
+
+        // PSS Balken
+        new Chart(document.getElementById("chartStress"),{
+            type:"bar",
+            data:{
+                labels:["Gesamtstress","Hilflosigkeit","Selbstwirksamkeit"],
+                datasets:[{
+                    label:"Punkte (0–40)",
+                    data:[ result.pss.total, result.pss.helplessness, result.pss.selfEfficacyReversed ],
+                    backgroundColor:["#b30000","#e67300","#0066cc"]
+                }]
+            },
+            options:{ scales:{y:{beginAtZero:true,max:40}} }
+        });
+    }
+
+    /* ============================
+       Wissenschaftlich-ethische Einordnung
+    ============================ */
+    function interpretBigFive(b){
+        const range = v => v<2.4?"niedrig":v<3.6?"mittel":"hoch";
+        return `
+    <h2>Einordnung Big Five</h2>
+    <ul>
+        <li>Extraversion: <b>${range(b.extraversion)}</b></li>
+        <li>Verträglichkeit: <b>${range(b.agreeableness)}</b></li>
+        <li>Gewissenhaftigkeit: <b>${range(b.conscientiousness)}</b></li>
+        <li>Neurotizismus: <b>${range(b.neuroticism)}</b></li>
+        <li>Offenheit: <b>${range(b.openness)}</b></li>
+    </ul>
+    <p class="note">
+        Forschung deutet darauf hin, dass bestimmte Persönlichkeitsfacetten statistisch mit
+        Verhalten, Stressreaktionen und Emotionsverarbeitung zusammenhängen können.
+        Diese Muster sind jedoch nicht deterministisch – individuelle Lebensbedingungen
+        beeinflussen Ausprägungen wesentlich.
+    </p>`;
+    }
+
+    function interpretPSS(p){
+        const level = p.total<14?"niedrig":p.total<27?"mittel":"hoch";
+        return `
+    <h2>Einordnung Stresswert</h2>
+    <p>Gesamtstress: <b>${level}</b> (${p.total} Punkte)</p>
+    <p class="note">
+        Empirische Studien zeigen, dass hohe Stresswerte häufiger mit
+        wahrgenommener Hilflosigkeit verbunden sind, während Selbstwirksamkeit
+        als schützender Faktor wirken kann. Dies beschreibt Tendenzen –
+        keine Aussage über einzelne Personen.
+    </p>`;
+    }
+
+    if(result){
+        document.getElementById("interpretation").innerHTML =
+            interpretBigFive(result.bfi) + interpretPSS(result.pss);
+    }
+</script>
+
+</body>
+</html>

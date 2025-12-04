@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard – Studie Persönlichkeit & Stress</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 40px auto;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            margin-bottom: 0.5em;
+        }
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+        button, a.button {
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table th, table td {
+            border-bottom: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        table th {
+            font-weight: bold;
+        }
+        .small-info {
+            color: #777;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📊 Dashboard – Persönlichkeit & Stress Studie</h1>
+
+<div class="section">
+    <h2>1. Datenübersicht</h2>
+    <p class="small-info">
+        Hier werden später alle gespeicherten Datensätze automatisch geladen.<br>
+        Live-Viewer + Filterung + Export dann über JS in Schritt 3.
+    </p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Session</th>
+            <th>E · A · C · N · O</th>
+            <th>PSS</th>
+            <th>Datum</th>
+        </tr>
+        </thead>
+        <tbody id="dataset-body">
+        <!-- 🟡 Wird später dynamisch gefüllt via fetch("/api/export/json") -->
+        <tr><td colspan="5">Noch keine Daten geladen</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>2. Datenexport</h2>
+    <p>CSV/JSON der gesamten Studie herunterladen:</p>
+
+    <a href="/api/export/csv" class="button">CSV Export (Standard)</a>
+    <a href="/api/export" class="button">CSV Export (Scientific)</a>
+    <a href="/api/export/json" class="button">JSON Export</a>
+</div>
+
+</body>
+</html>
