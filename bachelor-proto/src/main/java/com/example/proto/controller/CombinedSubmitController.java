@@ -36,13 +36,20 @@ public class CombinedSubmitController {
     @PostMapping
     public ResponseEntity<CombinedSubmitResponse> submit(@Valid @RequestBody CombinedSubmitRequest request) {
 
+        // 🔥 SessionID sicher aus BFI lesen (PSS muss matchen)
+        String sessionID = request.bfi.sessionID;
+
+        if (!sessionID.equals(request.pss.sessionID)) {
+            return ResponseEntity.badRequest().body(null); // oder Custom Error
+        }
+
         BfiScores bfi = bfiService.score(request.bfi);
         PssScores pss = pssService.score(request.pss);
 
         LocalDateTime now = LocalDateTime.now();
 
         SurveyResult entity = new SurveyResult(
-                request.sessionID,
+                sessionID,                       // 👈 jetzt korrekt
                 bfi.extraversion,
                 bfi.agreeableness,
                 bfi.conscientiousness,
@@ -56,7 +63,7 @@ public class CombinedSubmitController {
 
         resultService.save(entity);
 
-        CombinedSubmitResponse response = new CombinedSubmitResponse(bfi, pss, now);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new CombinedSubmitResponse(bfi, pss, now));
     }
 }
+

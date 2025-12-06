@@ -10,158 +10,65 @@
             max-width: 800px;
             line-height: 1.6;
         }
-        h1 { margin-bottom: 0.2em; }
-        .hint {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 25px;
-            display: block;
-        }
-        .question { margin-bottom: 26px; }
-        .scale { margin-top: 6px; }
-        .scale label { margin-right: 18px; cursor: pointer; }
+        h1 { margin-bottom: .2em; }
+        .hint { font-size:.9em;color:#666;margin-bottom:25px;display:block; }
+        .question { margin-bottom:26px; }
+        .scale { margin-top:6px; }
+        .scale label { margin-right:18px;cursor:pointer; }
 
         button {
-            padding: 10px 18px;
-            margin-top: 20px;
-            border-radius: 6px;
-            border: 1px solid #444;
-            background: #222;
-            color: #fff;
-            cursor: pointer;
+            padding:10px 18px;margin-top:20px;
+            border-radius:6px;border:1px solid #444;
+            background:#222;color:#fff;cursor:pointer;
         }
     </style>
 </head>
 <body>
 
 <h1>PSS-10: Fragebogen zum wahrgenommenen Stress</h1>
-<span class="hint">
-    Beziehe dich bitte auf den letzten Monat. <br>
-    0 = nie, 4 = sehr oft.
-</span>
+<span class="hint">Beziehe dich auf den letzten Monat.<br>0 = nie, 4 = sehr oft.</span>
 
 <form id="pss-form">
 
-    <div class="question">
-        <p>1. Wie oft warst du im letzten Monat aufgewühlt, weil etwas Unerwartetes passiert ist?</p>
-        <div class="scale">
-            <label><input type="radio" name="q1" value="0">0</label>
-            <label><input type="radio" name="q1" value="1">1</label>
-            <label><input type="radio" name="q1" value="2">2</label>
-            <label><input type="radio" name="q1" value="3">3</label>
-            <label><input type="radio" name="q1" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>1. Wie oft warst du im letzten Monat aufgewühlt, weil etwas Unerwartetes passiert ist?</p>
+        <div class="scale"><label><input type="radio" name="q1" value="0">0</label><label><input type="radio" name="q1" value="1">1</label><label><input type="radio" name="q1" value="2">2</label><label><input type="radio" name="q1" value="3">3</label><label><input type="radio" name="q1" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>2. Wie oft hattest du das Gefühl, wichtige Dinge nicht unter Kontrolle zu haben?</p>
-        <div class="scale">
-            <label><input type="radio" name="q2" value="0">0</label>
-            <label><input type="radio" name="q2" value="1">1</label>
-            <label><input type="radio" name="q2" value="2">2</label>
-            <label><input type="radio" name="q2" value="3">3</label>
-            <label><input type="radio" name="q2" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>2. Wie oft hattest du das Gefühl, wichtige Dinge nicht unter Kontrolle zu haben?</p>
+        <div class="scale"><label><input type="radio" name="q2" value="0">0</label><label><input type="radio" name="q2" value="1">1</label><label><input type="radio" name="q2" value="2">2</label><label><input type="radio" name="q2" value="3">3</label><label><input type="radio" name="q2" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>3. Wie oft hast du dich nervös und „gestresst“ gefühlt?</p>
-        <div class="scale">
-            <label><input type="radio" name="q3" value="0">0</label>
-            <label><input type="radio" name="q3" value="1">1</label>
-            <label><input type="radio" name="q3" value="2">2</label>
-            <label><input type="radio" name="q3" value="3">3</label>
-            <label><input type="radio" name="q3" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>3. Wie oft hast du dich nervös und „gestresst“ gefühlt?</p>
+        <div class="scale"><label><input type="radio" name="q3" value="0">0</label><label><input type="radio" name="q3" value="1">1</label><label><input type="radio" name="q3" value="2">2</label><label><input type="radio" name="q3" value="3">3</label><label><input type="radio" name="q3" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>4. Wie oft warst du zuversichtlich, deine persönlichen Probleme bewältigen zu können? (R)</p>
-        <div class="scale">
-            <label><input type="radio" name="q4" value="0">0</label>
-            <label><input type="radio" name="q4" value="1">1</label>
-            <label><input type="radio" name="q4" value="2">2</label>
-            <label><input type="radio" name="q4" value="3">3</label>
-            <label><input type="radio" name="q4" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>4. Wie oft warst du zuversichtlich, Probleme bewältigen zu können? <b>(R)</b></p>
+        <div class="scale"><label><input type="radio" name="q4" value="0">0</label><label><input type="radio" name="q4" value="1">1</label><label><input type="radio" name="q4" value="2">2</label><label><input type="radio" name="q4" value="3">3</label><label><input type="radio" name="q4" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>5. Wie oft hast du das Gefühl gehabt, dass die Dinge deinen Vorstellungen entsprachen? (R)</p>
-        <div class="scale">
-            <label><input type="radio" name="q5" value="0">0</label>
-            <label><input type="radio" name="q5" value="1">1</label>
-            <label><input type="radio" name="q5" value="2">2</label>
-            <label><input type="radio" name="q5" value="3">3</label>
-            <label><input type="radio" name="q5" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>5. Wie oft entsprachen die Dinge deinen Vorstellungen? <b>(R)</b></p>
+        <div class="scale"><label><input type="radio" name="q5" value="0">0</label><label><input type="radio" name="q5" value="1">1</label><label><input type="radio" name="q5" value="2">2</label><label><input type="radio" name="q5" value="3">3</label><label><input type="radio" name="q5" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>6. Wie oft hattest du das Gefühl, nicht mit allem fertig zu werden?</p>
-        <div class="scale">
-            <label><input type="radio" name="q6" value="0">0</label>
-            <label><input type="radio" name="q6" value="1">1</label>
-            <label><input type="radio" name="q6" value="2">2</label>
-            <label><input type="radio" name="q6" value="3">3</label>
-            <label><input type="radio" name="q6" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>6. Wie oft hattest du das Gefühl, nicht mit allem fertig zu werden?</p>
+        <div class="scale"><label><input type="radio" name="q6" value="0">0</label><label><input type="radio" name="q6" value="1">1</label><label><input type="radio" name="q6" value="2">2</label><label><input type="radio" name="q6" value="3">3</label><label><input type="radio" name="q6" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>7. Wie oft konntest du Ärger erfolgreich bewältigen? (R)</p>
-        <div class="scale">
-            <label><input type="radio" name="q7" value="0">0</label>
-            <label><input type="radio" name="q7" value="1">1</label>
-            <label><input type="radio" name="q7" value="2">2</label>
-            <label><input type="radio" name="q7" value="3">3</label>
-            <label><input type="radio" name="q7" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>7. Wie oft konntest du Ärger erfolgreich bewältigen? <b>(R)</b></p>
+        <div class="scale"><label><input type="radio" name="q7" value="0">0</label><label><input type="radio" name="q7" value="1">1</label><label><input type="radio" name="q7" value="2">2</label><label><input type="radio" name="q7" value="3">3</label><label><input type="radio" name="q7" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>8. Wie oft hattest du das Gefühl, dass du alles im Griff hattest? (R)</p>
-        <div class="scale">
-            <label><input type="radio" name="q8" value="0">0</label>
-            <label><input type="radio" name="q8" value="1">1</label>
-            <label><input type="radio" name="q8" value="2">2</label>
-            <label><input type="radio" name="q8" value="3">3</label>
-            <label><input type="radio" name="q8" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>8. Wie oft hattest du das Gefühl, dass du alles im Griff hattest? <b>(R)</b></p>
+        <div class="scale"><label><input type="radio" name="q8" value="0">0</label><label><input type="radio" name="q8" value="1">1</label><label><input type="radio" name="q8" value="2">2</label><label><input type="radio" name="q8" value="3">3</label><label><input type="radio" name="q8" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>9. Wie oft hast du dich wegen Dingen geärgert, die außerhalb deiner Kontrolle lagen?</p>
-        <div class="scale">
-            <label><input type="radio" name="q9" value="0">0</label>
-            <label><input type="radio" name="q9" value="1">1</label>
-            <label><input type="radio" name="q9" value="2">2</label>
-            <label><input type="radio" name="q9" value="3">3</label>
-            <label><input type="radio" name="q9" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>9. Wie oft hast du dich über Dinge geärgert, die außerhalb deiner Kontrolle lagen?</p>
+        <div class="scale"><label><input type="radio" name="q9" value="0">0</label><label><input type="radio" name="q9" value="1">1</label><label><input type="radio" name="q9" value="2">2</label><label><input type="radio" name="q9" value="3">3</label><label><input type="radio" name="q9" value="4">4</label></div></div>
 
-    <div class="question">
-        <p>10. Wie oft hattest du das Gefühl, dass sich so viele Schwierigkeiten angehäuft haben,
-            dass du sie nicht bewältigen konntest?</p>
-        <div class="scale">
-            <label><input type="radio" name="q10" value="0">0</label>
-            <label><input type="radio" name="q10" value="1">1</label>
-            <label><input type="radio" name="q10" value="2">2</label>
-            <label><input type="radio" name="q10" value="3">3</label>
-            <label><input type="radio" name="q10" value="4">4</label>
-        </div>
-    </div>
+    <div class="question"><p>10. Wie oft hattest du das Gefühl, Schwierigkeiten häufen sich und du schaffst es nicht?</p>
+        <div class="scale"><label><input type="radio" name="q10" value="0">0</label><label><input type="radio" name="q10" value="1">1</label><label><input type="radio" name="q10" value="2">2</label><label><input type="radio" name="q10" value="3">3</label><label><input type="radio" name="q10" value="4">4</label></div></div>
 
-    <button type="submit">Weiter zu deinen Ergebnissen</button>
+    <button type="submit">Weiter zum Ergebnis</button>
 </form>
 
 <script src="app.js"></script>
 <script>
-    document.getElementById("pss-form").addEventListener("submit", async function (e) {
+    document.getElementById("pss-form").addEventListener("submit", async e => {
         e.preventDefault();
 
-        // 1) Validierung
+        // 1. Validierung der PSS-Items
         for (let i = 1; i <= 10; i++) {
             if (!document.querySelector(`input[name="q${i}"]:checked`)) {
                 alert("Bitte Frage " + i + " beantworten.");
@@ -169,44 +76,45 @@
             }
         }
 
-        // 2) Session + BFI laden
-        const sessionId = App.getSessionId();
+        // 2. Session wieder laden
+        const sessionId = App.getSessionId();   // ← sehr wichtig
         const bfiData = App.loadBfi();
 
         if (!bfiData) {
-            alert("BFI-Daten fehlen – bitte Fragebogen 1 erneut beantworten.");
+            alert("BFI fehlt – bitte zuerst den Persönlichkeitsfragebogen ausfüllen.");
             return;
         }
 
-        // 3) PSS Antworten sammeln
-        const pssData = { sessionID: sessionId };
-        for (let i = 1; i <= 10; i++) {
-            pssData["q" + i] = parseInt(
-                document.querySelector(`input[name="q${i}"]:checked`).value,
-                10
-            );
-        }
+        // 3. PSS Antworten sammeln
+        const pssData = {};
+        for (let i = 1; i <= 10; i++)
+            pssData["q" + i] = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
 
-        // 4) Daten an Backend senden
+        // 🔥 WICHTIG — Session in beide Objekte schreiben
+        bfiData.sessionID = sessionId;
+        pssData.sessionID = sessionId;
+
+        // ⬇ FINALER POST KOMBINIERTER REQUEST
         const response = await fetch("/api/submit-all", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ sessionID: sessionId, bfi: bfiData, pss: pssData })
+            body: JSON.stringify({
+                sessionID: sessionId,   // neuer Pflichtteil
+                bfi: bfiData,
+                pss: pssData
+            })
         });
 
         if (!response.ok) {
-            alert("Fehler beim Speichern im Backend.");
+            alert("❗Fehler beim Senden an das Backend.");
             return;
         }
 
-        const result = await response.json();
-
-        // 5) Speichern + Weiter zur Ergebnisseite
-        App.saveResult(result);
+        App.saveResult(await response.json());
         window.location.href = "result.html";
     });
-</script>
 
+</script>
 
 </body>
 </html>

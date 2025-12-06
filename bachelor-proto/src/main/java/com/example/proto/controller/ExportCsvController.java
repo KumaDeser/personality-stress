@@ -80,16 +80,14 @@ public class ExportCsvController {
         sb.append("# Records: ").append(all.size()).append("\n");
         sb.append("# Study: Personality & Stress (Bachelor Thesis)\n");
 
-        // Header-Zeile (Semikolon-getrennt)
-        sb.append("id;sessionId;timestamp;")
-                .append("extraversion;agreeableness;conscientiousness;neuroticism;openness;")
-                .append("pssTotal;pssHelplessness;pssSelfEfficacyReversed\n");
+        // Header
+        sb.append("id;sessionId;extraversion;agreeableness;conscientiousness;neuroticism;openness;")
+                .append("pssTotal;pssHelplessness;pssSelfEfficacyReversed;timestamp\n");
 
-        // Datenzeilen
+// Rows Datenzeilen
         for (SurveyResult r : all) {
             sb.append(r.id).append(";")
                     .append(r.sessionId).append(";")
-                    .append(r.timestamp).append(";")
                     .append(r.extraversion).append(";")
                     .append(r.agreeableness).append(";")
                     .append(r.conscientiousness).append(";")
@@ -97,8 +95,10 @@ public class ExportCsvController {
                     .append(r.openness).append(";")
                     .append(r.pssTotal).append(";")
                     .append(r.pssHelplessness).append(";")
-                    .append(r.pssSelfEfficacyReversed).append("\n");
+                    .append(r.pssSelfEfficacyReversed).append(";")
+                    .append(r.timestamp).append("\n");
         }
+
 
         // BOM + UTF-8 (für Excel)
         ByteArrayOutputStream out = new ByteArrayOutputStream();
