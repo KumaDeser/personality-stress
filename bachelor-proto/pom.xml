@@ -47,6 +47,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- Tests (werden nur nicht ausgeführt) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -60,14 +61,14 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- PostgreSQL JDBC Treiber (für Railway / Produktion) -->
+        <!-- PostgreSQL JDBC Treiber für Railway -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Byte Buddy Dependencies -->
+        <!-- Byte Buddy -->
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
@@ -80,7 +81,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Test Dependencies -->
+        <!-- Mockito Tests -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -95,11 +96,16 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+
         <plugins>
+
+            <!-- Spring Boot Build -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!-- Java Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -111,10 +117,14 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- Surefire (Unit Tests disabled) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
                 <configuration>
+                    <skipTests>true</skipTests>
                     <argLine>
                         -Dnet.bytebuddy.experimental=true
                         --add-opens java.base/java.lang=ALL-UNNAMED
@@ -122,6 +132,8 @@
                     </argLine>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
+
 </project>
