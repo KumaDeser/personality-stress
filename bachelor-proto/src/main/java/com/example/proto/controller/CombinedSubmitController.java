@@ -33,7 +33,7 @@ public class CombinedSubmitController {
     @PostMapping
     public ResponseEntity<CombinedSubmitResponse> submit(@Valid @RequestBody CombinedSubmitRequest req) {
 
-        /** 🔐 Sicherheits-Check — verhindert gemischte Personen-Daten */
+        // Sicherheits-Check — verhindert gemischte Personen-Daten
         if (!req.sessionID.equals(req.bfi.sessionID) ||
                 !req.sessionID.equals(req.pss.sessionID)) {
             return ResponseEntity.badRequest().build();
