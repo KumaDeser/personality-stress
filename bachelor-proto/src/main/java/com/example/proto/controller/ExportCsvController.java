@@ -36,13 +36,16 @@ public class ExportCsvController {
         StringBuilder sb = new StringBuilder();
 
         // Header
-        sb.append("id,sessionId,extraversion,agreeableness,conscientiousness,neuroticism,openness,")
+        sb.append("id,sessionId,studyProgram,semester,")
+                .append("extraversion,agreeableness,conscientiousness,neuroticism,openness,")
                 .append("pssTotal,pssHelplessness,pssSelfEfficacyReversed,timestamp\n");
 
-        // Rows
+// Rows
         for (SurveyResult r : all) {
             sb.append(r.id).append(",")
                     .append(r.sessionId).append(",")
+                    .append(r.studyProgram).append(",")
+                    .append(r.semester).append(",")
                     .append(r.extraversion).append(",")
                     .append(r.agreeableness).append(",")
                     .append(r.conscientiousness).append(",")
@@ -53,6 +56,7 @@ public class ExportCsvController {
                     .append(r.pssSelfEfficacyReversed).append(",")
                     .append(r.timestamp).append("\n");
         }
+
 
         byte[] data = sb.toString().getBytes(StandardCharsets.UTF_8);
 
@@ -67,7 +71,7 @@ public class ExportCsvController {
      * Wissenschaftlicher CSV Export (Semikolon, Metadaten, Timestamp im Dateinamen)
      * Pfad: /api/export
      */
-    @GetMapping("/api/export")
+    @GetMapping("/api/export/scientific")
     public ResponseEntity<byte[]> exportCsvScientific() throws Exception {
 
         List<SurveyResult> all = repository.findAll();
@@ -81,13 +85,16 @@ public class ExportCsvController {
         sb.append("# Study: Personality & Stress (Bachelor Thesis)\n");
 
         // Header
-        sb.append("id;sessionId;extraversion;agreeableness;conscientiousness;neuroticism;openness;")
+        sb.append("id;sessionId;studyProgram;semester;")
+                .append("extraversion;agreeableness;conscientiousness;neuroticism;openness;")
                 .append("pssTotal;pssHelplessness;pssSelfEfficacyReversed;timestamp\n");
 
-// Rows Datenzeilen
+// Rows
         for (SurveyResult r : all) {
             sb.append(r.id).append(";")
                     .append(r.sessionId).append(";")
+                    .append(r.studyProgram).append(";")
+                    .append(r.semester).append(";")
                     .append(r.extraversion).append(";")
                     .append(r.agreeableness).append(";")
                     .append(r.conscientiousness).append(";")
@@ -98,6 +105,7 @@ public class ExportCsvController {
                     .append(r.pssSelfEfficacyReversed).append(";")
                     .append(r.timestamp).append("\n");
         }
+
 
 
         // BOM + UTF-8 (für Excel)

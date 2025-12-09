@@ -28,6 +28,10 @@ public class SurveyResult {
     public Integer pssHelplessness;
     public Integer pssSelfEfficacyReversed;
 
+    // Studienprogramm (AIN / GIB / WIN)
+    public String studyProgram;
+    public int semester;
+
     // Zeit der Einreichung
     public LocalDateTime timestamp;
 
@@ -44,6 +48,8 @@ public class SurveyResult {
             Integer pssTotal,
             Integer pssHelplessness,
             Integer pssSelfEfficacyReversed,
+            String studyProgram,  //AIN / GIB / WIN
+            int semester,        // 1-7
             LocalDateTime timestamp
     ) {
         this.sessionId = sessionId;
@@ -55,6 +61,8 @@ public class SurveyResult {
         this.pssTotal = pssTotal;
         this.pssHelplessness = pssHelplessness;
         this.pssSelfEfficacyReversed = pssSelfEfficacyReversed;
+        this.studyProgram = studyProgram;
+        this.semester = semester;
         this.timestamp = timestamp;
     }
 }

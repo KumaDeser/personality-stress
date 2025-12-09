@@ -7,10 +7,7 @@ import com.example.proto.service.SurveyResultService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -34,22 +31,23 @@ public class CombinedSubmitController {
     }
 
     @PostMapping
-    public ResponseEntity<CombinedSubmitResponse> submit(@Valid @RequestBody CombinedSubmitRequest request) {
+    public ResponseEntity<CombinedSubmitResponse> submit(@Valid @RequestBody CombinedSubmitRequest req) {
 
-        // 🔥 SessionID sicher aus BFI lesen (PSS muss matchen)
-        String sessionID = request.bfi.sessionID;
-
-        if (!sessionID.equals(request.pss.sessionID)) {
-            return ResponseEntity.badRequest().body(null); // oder Custom Error
+        /** 🔐 Sicherheits-Check — verhindert gemischte Personen-Daten */
+        if (!req.sessionID.equals(req.bfi.sessionID) ||
+                !req.sessionID.equals(req.pss.sessionID)) {
+            return ResponseEntity.badRequest().build();
         }
 
-        BfiScores bfi = bfiService.score(request.bfi);
-        PssScores pss = pssService.score(request.pss);
+        // Score berechnen
+        BfiScores bfi = bfiService.score(req.bfi);
+        PssScores pss = pssService.score(req.pss);
 
         LocalDateTime now = LocalDateTime.now();
 
+        // Speicherung — jetzt MIT studyProgram & semester
         SurveyResult entity = new SurveyResult(
-                sessionID,                       // 👈 jetzt korrekt
+                req.sessionID,
                 bfi.extraversion,
                 bfi.agreeableness,
                 bfi.conscientiousness,
@@ -58,6 +56,8 @@ public class CombinedSubmitController {
                 pss.total,
                 pss.helplessness,
                 pss.selfEfficacyReversed,
+                req.studyProgram,   // Neu!
+                req.semester,       // Neu!
                 now
         );
 
@@ -66,4 +66,3 @@ public class CombinedSubmitController {
         return ResponseEntity.ok(new CombinedSubmitResponse(bfi, pss, now));
     }
 }
-

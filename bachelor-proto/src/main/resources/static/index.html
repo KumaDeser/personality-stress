@@ -10,18 +10,14 @@
             max-width: 800px;
             line-height: 1.6;
         }
-        h1, h2 {
-            margin-bottom: 0.4em;
-        }
+        h1, h2 { margin-bottom: 0.4em; }
         .card {
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px 24px;
             margin-top: 20px;
         }
-        .buttons {
-            margin-top: 24px;
-        }
+        .buttons { margin-top: 24px; }
         .buttons a {
             display: inline-block;
             padding: 10px 18px;
@@ -30,17 +26,15 @@
             text-decoration: none;
             border: 1px solid #444;
         }
-        .primary {
-            background: #222;
-            color: white;
+        .primary { background:#222;color:white; }
+        .secondary { background:#f5f5f5;color:#222; }
+        label { font-weight:600; display:block; margin-top:14px; }
+        select {
+            width:100%; padding:10px; margin-top:6px;
+            border-radius:6px;border:1px solid #aaa;
+            font-size:1em;
         }
-        .secondary {
-            background: #f5f5f5;
-            color: #222;
-        }
-        small {
-            color: #666;
-        }
+        small { color:#666; }
     </style>
 </head>
 <body>
@@ -63,20 +57,70 @@
 <div class="card">
     <h2>Ablauf</h2>
     <ol>
-        <li>Kurzer Persönlichkeitsfragebogen (ca. 1–2 Minuten)</li>
-        <li>Fragebogen zu deinem Stresserleben (ca. 1–2 Minuten)</li>
-        <li>Zusammenfassung deiner Werte (Big Five & Stress)</li>
+        <li>Persönlichkeitsfragebogen (ca. 1–2 Minuten)</li>
+        <li>Fragebogen zu Stresserleben (ca. 1–2 Minuten)</li>
+        <li>Zusammenfassung der Ergebnisse (Big Five und Stress)</li>
     </ol>
     <p><small>
-        Die Teilnahme ist anonym. Die Daten werden ausschließlich für eine Bachelorarbeit
-        an einer Hochschule ausgewertet und nicht an Dritte weitergegeben.
+        Teilnahme anonym, nur für Zwecke einer Bachelorarbeit.
+        Keine Weitergabe an Dritte.
     </small></p>
+</div>
+
+<div class="card">
+    <h2>Studieninformationen</h2>
+
+    <label for="program">Studiengang (Pflicht)</label>
+    <select id="program">
+        <option value="">Bitte auswählen</option>
+        <option value="AIN">Angewandte Informatik (AIN)</option>
+        <option value="GIB">Gesundheits- und Medizininformatik (GIB)</option>
+        <option value="WIN">Wirtschaftsinformatik (WIN)</option>
+    </select>
+
+    <label for="semester">Semester (Pflicht)</label>
+    <select id="semester">
+        <option value="">Bitte auswählen</option>
+        <option value="1">1. Semester</option>
+        <option value="2">2. Semester</option>
+        <option value="3">3. Semester</option>
+        <option value="4">4. Semester</option>
+        <option value="5">5. Semester</option>
+        <option value="6">6. Semester</option>
+        <option value="7">7. Semester</option>
+    </select>
 
     <div class="buttons">
-        <a href="bfi.html" class="primary">Jetzt starten</a>
-        <a href="info.html" class="secondary">Mehr zur Studie</a>
+        <a href="#" class="primary" onclick="startSurvey()">Jetzt starten</a>
     </div>
 </div>
+
+<script>
+    function ensureSessionId(){
+        let id = localStorage.getItem("sessionID");
+        if(!id){
+            id = "S" + Math.random().toString(36).substring(2,10).toUpperCase();
+            localStorage.setItem("sessionID", id);
+        }
+        return id;
+    }
+
+    function startSurvey(){
+        const p = document.getElementById("program").value;
+        const s = document.getElementById("semester").value;
+
+        if(!p || !s){
+            alert("Bitte Studiengang und Semester auswählen.");
+            return;
+        }
+
+        ensureSessionId();
+        localStorage.setItem("studyProgram", p);
+        localStorage.setItem("semester", s);
+
+        window.location.href = "bfi.html";
+    }
+</script>
 
 </body>
 </html>
