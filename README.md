@@ -1,21 +1,3 @@
-Nein, so viele persönliche Infos müssen **nicht** rein. Ich würde sie sogar eher reduzieren.
-
-Für ein öffentliches GitHub-Repo gilt: **so wenig persönliche Daten wie nötig, so viel Projektkontext wie sinnvoll.**
-
-### Vorteil von mehr Infos
-
-Es wirkt vollständiger und professioneller, vor allem wenn jemand verstehen soll, was das Projekt war. Für Bewerbungen kann ein sauber erklärtes Repo gut sein.
-
-### Nachteil von zu vielen Infos
-
-Du gibst unnötig persönliche Details preis: Hochschule, Studiengang, Thesis-Thema, Name, eventuell Forschungsdetails. Das ist nicht gefährlich, aber öffentlich dauerhaft auffindbar. Außerdem wirkt es manchmal weniger wie ein technisches Portfolio und mehr wie ein privates Uni-Dokument.
-
-### Meine Empfehlung
-
-Für dich reicht eine **neutrale README** ohne Hochschule, ohne vollen Thesis-Kontext und ohne persönliche Details. Du kannst schreiben, dass es ein academic survey project war, aber nicht alles offenlegen.
-
-Bessere, reduzierte Version:
-
 # Survey Application
 
 This repository contains a web-based survey application developed for an academic research project.
@@ -62,5 +44,3 @@ The repository remains available as a source-code reference.
 
 This project was developed for academic purposes only.
 It is not intended for production use or for collecting new data.
-
-Die Version ist für GitHub sauberer. Dein Name, Hochschule und Bachelorarbeit musst du nur reinschreiben, wenn du das Repo aktiv als Bewerbungsnachweis nutzen willst. Für normales Archivieren: lieber neutral halten.
